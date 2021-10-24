@@ -12,7 +12,6 @@ async def kick(ctx, reason: str=None):
     print("in here")
     print(ctx.guild.members)
     for member in ctx.guild.members:
-        # if role in member.roles: # does member have the specified role?
         print(member)
         try:
             if member != bot.user and member.id != ctx.guild.owner:
@@ -32,17 +31,6 @@ async def del_chan(ctx):
             await channel.delete()
         except:
             print(f"{channel} cannot be deleted")
-
-import typing
-
-@bot.command()
-async def ban(ctx, members: commands.Greedy[discord.Member],
-                   delete_days: typing.Optional[int] = 0, *,
-                   reason: str):
-    """Mass bans members with an optional delete_days parameter"""
-    for member in members:
-        await member.ban(delete_message_days=delete_days, reason=reason)
-
 
 @bot.event
 async def on_ready():
